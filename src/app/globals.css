@@ -2,26 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 235, 235, 237;
+  --background-end-rgb: 235, 235, 237;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 26, 31, 37;
+    --background-end-rgb: 26, 31, 37;
   }
+}
+.ph{
+  width: 30px;
+  height: 30px;
+}
+html{
+  overflow-x: hidden;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
+  
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    svg{
+      color: rgb(var(--foreground-rgb));
+    }
 }
