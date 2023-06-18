@@ -1,6 +1,12 @@
-import React from 'react'
+"use client";
 
-export default function Navbar() {
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+
+const Header = () => {
+  const { data: session } = useSession();
+  const user = session?.user;
+
   return (
     <nav id="header" className="w-full z-30 top-0 text-white">
     <div
@@ -43,36 +49,33 @@ export default function Navbar() {
         id="nav-content"
       >
         <ul className="list-reset lg:flex justify-end flex-1 items-center">
-          <li className="mr-3">
-            <a
-              className="inline-block py-2 px-4  font-bold no-underline"
-              href="#"
-              >Login</a
-            >
-          </li>
-          <li className="mr-3">
-            <a
-              className="inline-block  no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-              href="#"
-              >link</a
-            >
-          </li>
-          <li className="mr-3">
-            <a
-              className="inline-block  no-underline hover:text-underline py-2 px-4"
-              href="#"
-              >link</a
-            >
-          </li>
+        {!user && (
+            <>
+              <li className="pr-8">
+                <Link href="/sign-in" className="text-ct-dark-600">
+                  Entrar
+                </Link>
+              </li>
+            </>
+          )}
+          {user && (
+            <>
+              <li className="pr-8">
+                <Link href="/profile" className="text-ct-dark-600">
+                  Profile
+                </Link>
+              </li>
+              <li className="cursor-pointer pr-8" onClick={() => signOut()}>
+                Logout
+              </li>
+            </>
+          )}
         </ul>
-        <button
-          id="navAction"
-          className="mx-auto lg:mx-0 hover:underline font-extrabold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75"
-        >
-          Action
-        </button>
+       
       </div>
     </div>
   </nav>
   );
-}
+};
+
+export default Header;

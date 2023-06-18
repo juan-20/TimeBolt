@@ -1,10 +1,24 @@
-import Navbar from '@/components/navbar'
-import Image from 'next/image'
 
-export default function Home() {
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import Link from "next/link";
+import Header from "@/components/header.component";
+
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
+
   return (
-    <main className="flex min-h-screen flex-col items-center 2xl:pr-40 2xl:pl-40 xl:pr-28 xl:pl-28 sm:flex-wrap">
-      <Navbar/>
+    <main>
+      <div>
+        <Header/>
+      <Link href="/sign-in" style={{ marginRight: 10 }}>
+        Register
+      </Link>
+
+        <h1>Server Session</h1>
+        <pre>{JSON.stringify(session)}</pre>
+      </div>
     </main>
-  )
+  );
 }
