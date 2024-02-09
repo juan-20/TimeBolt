@@ -35,7 +35,9 @@ export const HeaderContainer = styled.header`
         }
 
         &.active{
-            color: 3px solid ${(props) => props.theme["green-500"]};
+            svg{
+            fill: ${(props) => props.theme["green-500"]};
+            }
         }
 
     }
